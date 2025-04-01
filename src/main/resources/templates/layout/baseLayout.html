@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -7,9 +8,9 @@
         <meta name="author" content="" />
         <title>Simple Sidebar - Start Bootstrap Template</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+        <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -51,48 +52,28 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">
-                      <a th:href="@{/hello(name='홍길동', age=16, dest='한양', page=1)}">Simple Sidebar</a> 
-                    </h1>
-
-                    <ul>
-                      <li th:each="str, status : ${list}">
-                        <p th:if="${status.index % 2 == 1}">ODD</p>
-                        <p th:unless="${status.index % 2 == 1}">EVEN</p>
-                      </li>
-                    </ul>
-
-                    <ul>
-                      <th:block th:each="str, status : ${list}" th:switch="${status.index % 3}">
-                      
-                      <li th:case="0">Zero</li>
-                      <li th:case="1">One</li>
-                      <li th:case="2">Two</li>
-
-                      </th:block>
-                    </ul>
-
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>
-                        Make sure to keep all page content within the
-                        <code>#page-content-wrapper</code>
-                        . The top navbar is optional, and just for demonstration. Just create an element with the
-                        <code>#sidebarToggle</code>
-                        ID which will toggle the menu when clicked.
-                    </p>
+                    <div layout:fragment="content">
+                        <h1 class="mt-4">Simple Sidebar</h1>                    
+                        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                        <p>
+                            Make sure to keep all page content within the
+                            <code>#page-content-wrapper</code>
+                            . The top navbar is optional, and just for demonstration. Just create an element with the
+                            <code>#sidebarToggle</code>
+                            ID which will toggle the menu when clicked.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <script th:inline="javascript">
-
-          const arr = [[${voList}]]
-
-        </script>
-
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script th:src="@{/js/scripts.js}"></script>
+        <script src="/js/scripts.js"></script>
+
+        <th:block layout:fragment="script">
+
+        </th:block>
+
     </body>
 </html>
